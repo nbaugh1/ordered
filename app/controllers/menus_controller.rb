@@ -1,5 +1,7 @@
-class MenusController < ApplicationController
-  before_action :set_menu, only: [:show, :update, :destroy]
+# frozen_string_literal: true
+
+class MenusController < ApiController
+  before_action :set_menu, only: %i[show update destroy]
 
   # GET /menus
   def index
@@ -39,13 +41,14 @@ class MenusController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_menu
-      @menu = Menu.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def menu_params
-      params.require(:menu).permit(:name, :type, :date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_menu
+    @menu = Menu.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def menu_params
+    params.require(:menu).permit(:name, :type, :date)
+  end
 end

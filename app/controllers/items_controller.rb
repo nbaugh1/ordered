@@ -1,5 +1,7 @@
-class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :update, :destroy]
+# frozen_string_literal: true
+
+class ItemsController < ApiController
+  before_action :set_item, only: %i[show update destroy]
 
   # GET /items
   def index
@@ -39,13 +41,14 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def item_params
-      params.require(:item).permit(:name, :description, :price, :allergies, :type)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def item_params
+    params.require(:item).permit(:name, :description, :price, :allergies, :type)
+  end
 end
