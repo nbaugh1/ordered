@@ -1,0 +1,6 @@
+development: secret_key_base: 8aa3095800da9ca700e7ce0e13774856b80f9b78a977e07e3671a372cf8907bb221bc0b6a0cb68c18f40cd8d00c69fa100a969ef92f375ab8beeef86cb99dd80
+
+test: secret_key_base: 170073a1f04f95cb38de98a7fd216f0129afe44019ed86401333eb2c6c8b247d53a82edfe73e7320066bb7211c66cc0c719a951cb2bb0d3bad70fd3093217a42
+
+production:
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
