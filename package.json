@@ -10,7 +10,5 @@
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "yarn build && yarn deploy"
   },
-  "dependencies": {
-    "react-router-dom": "^5.2.0"
-  }
+  "dependencies": {}
 }
