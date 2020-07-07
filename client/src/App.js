@@ -5,6 +5,7 @@ import {
   Route
 } from 'react-router-dom'
 import { Landing } from './components/Landing'
+import { Menu } from './components/Menu'
 import './App.css';
 
 function App() {
@@ -14,12 +15,12 @@ function App() {
 
       </div>
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <Landing />
         </Route>
-        {/* <Route path="/menu">
+        <Route path="/menus">
           <Menu />
-        </Route> */}
+        </Route>
       </Switch>
     </Router>
   );
