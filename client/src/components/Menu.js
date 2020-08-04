@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Table from 'react-bootstrap/Table'
+import MenuType from './MenuType'
 
 export const Menu = () => {
     const [menu, setMenu] = useState([])
@@ -9,25 +9,25 @@ export const Menu = () => {
             .then(response => response.json())
             .then(json => setMenu(json))
             .then(setMenuLoading(false))
-            .then(console.log(menu))
             .catch(error => console.log(error))
     }, [])
+
     return (
         <div>
             {
                 menuLoading ?
                     <div>
                         <p>Menu</p>
-                        <Table>
-                            <h4>loading....</h4>
-                        </Table>
+                        <h4>loading....</h4>
                     </div>
                     :
                     <div>
-                        Menu Loaded!
-                        </div>
+                        Menus Loaded!
+                        {menu.map((type) =>
+                        <MenuType menu={type} key={type.id} />
+                    )}
+                    </div>
             }
         </div>
-
     )
 }
