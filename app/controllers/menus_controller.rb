@@ -7,12 +7,12 @@ class MenusController < ApiController
   def index
     @menus = Menu.all
 
-    render json: @menus
+    render json: @menus.to_json(include: :items)
   end
 
   # GET /menus/1
   def show
-    render json: @menu
+    render json: @menu.to_json(include: { items: { only: %i[id name description] } })
   end
 
   # POST /menus

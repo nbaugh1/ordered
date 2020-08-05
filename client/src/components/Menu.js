@@ -11,7 +11,7 @@ export const Menu = () => {
             .then(setMenuLoading(false))
             .catch(error => console.log(error))
     }, [])
-
+    debugger
     return (
         <div>
             {

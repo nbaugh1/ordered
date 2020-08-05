@@ -230,6 +230,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  thor
   tzinfo-data
 
 RUBY VERSION
