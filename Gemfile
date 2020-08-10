@@ -52,3 +52,4 @@ gem 'devise'
 gem 'activeadmin'
 
 gem 'thor'
+gem 'awesome_print'
