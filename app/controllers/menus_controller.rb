@@ -2,7 +2,6 @@
 
 class MenusController < ApiController
   before_action :set_menu, only: %i[show update destroy]
-  before_action :authenticate_user!
 
   # GET /menus
   def index
