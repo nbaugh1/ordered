@@ -16,6 +16,9 @@ require 'action_view/railtie'
 require 'action_cable/engine'
 require 'sprockets/railtie'
 require 'rails/test_unit/railtie'
+require 'pry'
+require 'web-console'
+require 'byebug'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -40,5 +43,7 @@ module Ordered
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+    config.autoload_paths << Rails.root.join("lib")
+    config.eager_load_paths << Rails.root.join("lib")
   end
 end

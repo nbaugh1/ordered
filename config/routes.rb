@@ -2,7 +2,8 @@
 
 Rails.application.routes.draw do
   scope :api do
-    resources :users, only: :create
+    post :signup, to: 'users#create'
+    post :login, to: 'users#login'
     resources :orders
     resources :items
     resources :menus

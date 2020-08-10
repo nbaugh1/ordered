@@ -7,6 +7,7 @@ import {
 import { Landing } from './components/Landing'
 import { Menu } from './components/Menu'
 import SignUp from './components/SignUp'
+import Login from './components/Login'
 import './App.css';
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path="/signup">
           <SignUp />
+        </Route>
+        <Route>
+          <Login path="/login" />
         </Route>
       </Switch>
     </Router>

@@ -53,3 +53,6 @@ gem 'activeadmin'
 
 gem 'thor'
 gem 'awesome_print'
+gem 'jwt'
+gem 'pry'
+gem 'web-console'

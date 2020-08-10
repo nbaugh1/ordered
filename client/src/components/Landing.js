@@ -13,6 +13,10 @@ export const Landing = () => {
         let path = '/signup'
         window.location.href = path
     }
+    const changeToLoginRoute = () => {
+        let path = '/login'
+        window.location.href = path
+    }
     return (
         <Container>
             <p>hello</p>
@@ -27,6 +31,13 @@ export const Landing = () => {
                 onClick={changeToSignUpRoute}
             >
                 Sign Up
+            </Button>
+            <br />
+            <br />
+            <Button
+                onClick={changeToLoginRoute}
+            >
+                Login
             </Button>
         </Container>
     )
