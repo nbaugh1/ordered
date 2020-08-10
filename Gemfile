@@ -54,3 +54,5 @@ gem 'activeadmin'
 
 gem 'thor'
 gem 'awesome_print'
+
+gem 'dotenv-rails', groups: [:development, :test]
