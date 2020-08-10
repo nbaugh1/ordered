@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import { Landing } from './components/Landing'
 import { Menu } from './components/Menu'
+import SignUp from './components/SignUp'
 import './App.css';
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path="/menus">
           <Menu />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
         </Route>
       </Switch>
     </Router>
