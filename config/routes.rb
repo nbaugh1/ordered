@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :carts
   scope :api do
     post :signup, to: 'users#create'
     post :login, to: 'users#login'
