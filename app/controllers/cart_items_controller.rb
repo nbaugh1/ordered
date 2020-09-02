@@ -1,5 +1,7 @@
-class CartItemsController < ApplicationController
-  before_action :set_cart_item, only: [:show, :update, :destroy]
+# frozen_string_literal: true
+
+class CartItemsController < ApiController
+  before_action :set_cart_item, only: %i[show update destroy]
 
   # GET /cart_items
   def index
@@ -39,13 +41,14 @@ class CartItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cart_item
-      @cart_item = CartItem.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def cart_item_params
-      params.require(:cart_item).permit(:cart_id, :item_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cart_item
+    @cart_item = CartItem.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def cart_item_params
+    params.require(:cart_item).permit(:cart_id, :item_id)
+  end
 end
