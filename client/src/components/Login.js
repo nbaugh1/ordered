@@ -3,10 +3,13 @@ import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
+import { useHistory } from 'react-router-dom'
 
-const Login = ({ setLoggedIn }) => {
+const Login = ({ setLoggedIn, loggedIn }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const history = useHistory()
+    const state = window.location.state
 
     const onSubmit = (event) => {
         event.preventDefault()
@@ -21,6 +24,7 @@ const Login = ({ setLoggedIn }) => {
             .then(function (response) {
                 console.log(response)
                 setLoggedIn(response.data.loggedIn)
+                history.push('/profile')
             })
             .catch(function (error) {
                 console.log(error)

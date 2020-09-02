@@ -4,17 +4,18 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
+import PrivateRoute from './components/PrivateRoute'
 import { Landing } from './components/Landing'
 import { Menu } from './components/Menu'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
+import Profile from './components/Profile'
 import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
 
   return (
-
     <Router>
       <div className="App">
       </div>
@@ -28,9 +29,13 @@ function App() {
         <Route path="/signup">
           <SignUp />
         </Route>
-        <Route>
-          <Login setLoggedIn={setLoggedIn} path="/login" />
+
+        <Route path="/login">
+          <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         </Route>
+
+        <PrivateRoute path="/profile" loggedIn={loggedIn} component={Profile} />
+
       </Switch>
     </Router>
   );

@@ -1,10 +1,8 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
-import { useHistory } from 'react-router-dom'
 
 export const Landing = () => {
-    const history = useHistory()
     const changeToMenuRoute = () => {
         let path = '/menus'
         window.location.href = path
