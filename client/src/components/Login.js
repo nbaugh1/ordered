@@ -9,7 +9,6 @@ const Login = ({ setLoggedIn, loggedIn }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const history = useHistory()
-    const state = window.location.state
 
     const onSubmit = (event) => {
         event.preventDefault()
@@ -24,6 +23,7 @@ const Login = ({ setLoggedIn, loggedIn }) => {
             .then(function (response) {
                 console.log(response)
                 setLoggedIn(response.data.loggedIn)
+                localStorage.setItem('currentUser', response.data.user)
                 history.push('/profile')
             })
             .catch(function (error) {

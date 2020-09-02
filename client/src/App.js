@@ -29,13 +29,10 @@ function App() {
         <Route path="/signup">
           <SignUp />
         </Route>
-
         <Route path="/login">
           <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         </Route>
-
         <PrivateRoute path="/profile" loggedIn={loggedIn} component={Profile} />
-
       </Switch>
     </Router>
   );
