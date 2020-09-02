@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 
-const Login = () => {
+const Login = ({ setLoggedIn }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -20,6 +20,7 @@ const Login = () => {
         })
             .then(function (response) {
                 console.log(response)
+                setLoggedIn(response.data.loggedIn)
             })
             .catch(function (error) {
                 console.log(error)

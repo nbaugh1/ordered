@@ -16,7 +16,7 @@ class UsersController < ApiController
     if user&.authenticate(params[:user][:password])
       auth_token = Jsonwebtoken.encode({ user_id: user.id })
       cookies.signed[:jwt] = { value: auth_token, httponly: true }
-      render json: { user: user.email }, status: :ok
+      render json: { user: user.email, loggedIn: true }, status: :ok
     else
       render json: { error: 'Invalid username / password' }, status: :unauthorized
     end
