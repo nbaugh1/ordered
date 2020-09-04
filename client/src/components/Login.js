@@ -23,7 +23,7 @@ const Login = ({ setLoggedIn, loggedIn }) => {
             .then(function (response) {
                 console.log(response)
                 setLoggedIn(response.data.loggedIn)
-                localStorage.setItem('currentUser', response.data.user)
+                localStorage.setItem('current_user', response.data.user)
                 history.push('/profile')
             })
             .catch(function (error) {
