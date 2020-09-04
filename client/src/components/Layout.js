@@ -1,10 +1,14 @@
 import React from 'react'
+import Container from 'react-bootstrap/Container'
+import TopNav from './TopNav'
 
-const Layout = () => {
+const Layout = ({ loggedIn, setLoggedIn, children }) => {
     return (
-        <div>
+        <Container>
+            <TopNav loggedIn={loggedIn} setLoggedIn={setLoggedIn}></TopNav>
+            {children}
 
-        </div>
+        </Container>
     )
 }
 

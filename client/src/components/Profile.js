@@ -1,7 +1,9 @@
 import React from 'react'
 
 const Profile = () => {
-    const currentUser = localStorage.getItem('currentUser')
+
+    const currentUser = localStorage.getItem('current_user')
+
     return (
         <div>
             <h1>Hello</h1>
