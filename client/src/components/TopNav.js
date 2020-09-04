@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
 import Button from 'react-bootstrap/Button'
 
 const TopNav = ({ loggedIn, setLoggedIn }) => {
@@ -17,7 +16,6 @@ const TopNav = ({ loggedIn, setLoggedIn }) => {
     }
 
     const handleLogout = () => {
-        history.push("/")
         setLoggedIn(false)
         localStorage.setItem('current_user', "")
         localStorage.setItem('current_session', false)
