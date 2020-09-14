@@ -21,8 +21,6 @@ const TopNav = ({ loggedIn, setLoggedIn }) => {
         localStorage.setItem('current_session', false)
     }
 
-
-
     return (
         loggedIn ?
             <Navbar>
