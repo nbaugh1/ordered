@@ -14,7 +14,9 @@ import Profile from './components/Profile'
 import './App.css';
 
 function App() {
+
   const [loggedIn, setLoggedIn] = useState(false)
+  const currentUser = localStorage.getItem('current_user')
 
 
   return (
@@ -35,6 +37,7 @@ function App() {
           <Route path="/login">
             <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
           </Route>
+
           <PrivateRoute path="/profile" loggedIn={loggedIn} component={Profile} />
         </Switch>
       </Router>

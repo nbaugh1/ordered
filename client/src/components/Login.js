@@ -4,11 +4,14 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import { useHistory } from 'react-router-dom'
+import { useAuth } from '../context/UserContext'
 
 const Login = ({ setLoggedIn, loggedIn }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const history = useHistory()
+    const login = React.useContext(useAuth())
+    debugger
 
     const onSubmit = (event) => {
         event.preventDefault()
