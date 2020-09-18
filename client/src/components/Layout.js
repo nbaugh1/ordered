@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Container from 'react-bootstrap/Container'
 import TopNav from './TopNav'
+import { AuthContext } from '../contexts/AuthContext'
 
-const Layout = ({ loggedIn, setLoggedIn, children }) => {
+const Layout = ({ children }) => {
+
+    const context = useContext(AuthContext)
+
     return (
         <Container>
-            <TopNav loggedIn={loggedIn} setLoggedIn={setLoggedIn}></TopNav>
+            <TopNav auth={context.isAuth}></TopNav>
             {children}
-
         </Container>
     )
 }

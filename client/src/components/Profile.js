@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../contexts/AuthContext'
 
-const Profile = () => {
+const Profile = ({ authed }) => {
 
-    const currentUser = localStorage.getItem('current_user')
+    const context = useContext(AuthContext)
+    context.setIsAuth(authed)
 
     return (
         <div>
             <h1>Hello</h1>
-            <p>Current User is: {currentUser}</p>
+            <h1>Authed? {context.isAuth}</h1>
         </div>
     )
 }
