@@ -1,40 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
+import { useAuth } from '../contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 
-const Login = ({ setLoggedIn, loggedIn }) => {
+const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const { login } = useAuth()
     const history = useHistory()
-
-    const onSubmit = (event) => {
-        event.preventDefault()
-        axios.post('/api/login', {
-            user: {
-                email: email,
-                password: password,
-            },
-        }, {
-            withCredentials: true
-        })
-            .then(function (response) {
-                console.log(response)
-                setLoggedIn(response.data.loggedIn)
-                localStorage.setItem('current_user', response.data.user)
-                localStorage.setItem('current_session', response.data.loggedIn)
-                history.push('/profile')
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
-    }
 
     return (
         <Container>
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={(e) => login(e, email, password, history)}>
                 <Form.Group controlId="formGroupEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control

@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
+import { AuthContext } from '../contexts/AuthContext'
 
-const TopNav = ({ loggedIn, setLoggedIn }) => {
+
+const TopNav = () => {
+
+    const auth = useContext(AuthContext)
 
     const changeToLoginRoute = () => {
         let path = '/login'
@@ -15,14 +19,8 @@ const TopNav = ({ loggedIn, setLoggedIn }) => {
         window.location.href = path
     }
 
-    const handleLogout = () => {
-        setLoggedIn(false)
-        localStorage.setItem('current_user', "")
-        localStorage.setItem('current_session', false)
-    }
-
     return (
-        loggedIn ?
+        auth.loggedIn ?
             <Navbar>
                 <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -31,7 +29,7 @@ const TopNav = ({ loggedIn, setLoggedIn }) => {
                         <Button href='/' >
                             Home
                         </Button>
-                        <Button onClick={handleLogout}>
+                        <Button onClick={auth.logout}>
                             Log Out
                         </Button>
 

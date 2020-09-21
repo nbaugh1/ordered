@@ -16,10 +16,15 @@ class UsersController < ApiController
     if user&.authenticate(params[:user][:password])
       auth_token = Jsonwebtoken.encode({ user_id: user.id })
       cookies.signed[:jwt] = { value: auth_token, httponly: true }
+      session[:user_id] = user.id
       render json: { user: user.email, loggedIn: true }, status: :ok
     else
       render json: { error: 'Invalid username / password' }, status: :unauthorized
     end
+  end
+
+  def current_user
+    @current_user = User.find(session[:user_id])
   end
 
   private
