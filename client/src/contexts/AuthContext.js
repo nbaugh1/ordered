@@ -22,7 +22,6 @@ const AuthProvider = (props) => {
                 setLoggedIn(response.data.loggedIn)
                 localStorage.setItem('currentUser', response.data.user)
                 localStorage.setItem('currentSession', response.data.loggedIn)
-                localStorage.setItem('token', response.data.token)
                 window.location.href = '/profile'
             })
             .catch(function (error) {
@@ -33,8 +32,7 @@ const AuthProvider = (props) => {
     const logout = () => {
         setLoggedIn(false)
         localStorage.setItem('currentUser', "")
-        localStorage.setItem('currentSession', false)
-        localStorage.removeItem('token')
+        localStorage.removeItem('currentSession')
         axios.delete('api/logout', {
             withCredentials: true
         })

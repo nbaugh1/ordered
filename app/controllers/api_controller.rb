@@ -4,14 +4,11 @@ class ApiController < ActionController::API
   include ::ActionController::Cookies
 
   def auth_header
-    request.headers['Authorization']
+    cookies.signed[:jwt]
   end
 
   def decoded_token
-    if auth_header
-      token = auth_header.split(' ')[1]
-      Jsonwebtoken.decode(token)
-    end
+    Jsonwebtoken.decode(auth_header) if auth_header
   end
 
   def session_user

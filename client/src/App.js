@@ -16,19 +16,14 @@ import './App.css';
 import { AuthContext } from './contexts/AuthContext';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("currentSession"))
   const auth = useContext(AuthContext)
-  const token = localStorage.getItem('token')
 
   const checkLoggedIn = () => {
-    if (token) {
+    if (isLoggedIn) {
       console.log("Checking login status...")
       axios.get('api/auto_login',
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        },
         {
           withCredentials: true
         })
@@ -41,37 +36,37 @@ function App() {
       setIsLoggedIn(localStorage.getItem("currentSession"))
       auth.checkSession()
     }
-
   }
 
   useEffect(() => checkLoggedIn(), [isLoggedIn])
 
   return isLoggedIn ?
-
-    <div>
-      <Layout >
-        <Router>
-          <div className="App">
-          </div>
-          <Switch>
-            <Route exact path="/">
-              <Landing />
-            </Route>
-            <Route path="/menus">
-              <Menu />
-            </Route>
-            <Route path="/signup">
-              <SignUp />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <PrivateRoute path="/profile" isLoggedIn={isLoggedIn} component={Profile} />
-          </Switch>
-        </Router>
-      </Layout></div>
+    <Layout >
+      <Router>
+        <div className="App">
+        </div>
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route path="/menus">
+            <Menu />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <PrivateRoute path="/profile" isLoggedIn={isLoggedIn} component={Profile} />
+        </Switch>
+      </Router>
+    </Layout>
     :
-    <Login />
+    <Layout>
+      <Login />
+    </Layout>
+
 }
 
 export default App;

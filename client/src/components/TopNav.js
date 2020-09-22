@@ -32,7 +32,6 @@ const TopNav = () => {
                         <Button onClick={auth.logout}>
                             Log Out
                         </Button>
-
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
