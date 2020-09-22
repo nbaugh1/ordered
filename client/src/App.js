@@ -33,6 +33,11 @@ function App() {
           localStorage.setItem("currentSession", response.data.loggedIn)
           localStorage.setItem("currentUser", response.data.email)
         })
+        .catch((error) => {
+          console.error(error)
+          alert("You've been disconnected, please log in again")
+          auth.logout()
+        })
       setIsLoggedIn(localStorage.getItem("currentSession"))
       auth.checkSession()
     }

@@ -13,9 +13,11 @@ class ApiController < ActionController::API
 
   def session_user
     decoded_hash = decoded_token
-    unless decoded_hash.empty?
+    if !Jsonwebtoken.expired(decoded_hash[0]) && Jsonwebtoken.valid_payload(decoded_hash[0])
       user_id = decoded_hash[0]['user_id']
       @user = User.find_by(id: user_id)
+    else
+      render json: { errors: 'Not logged in' }, status: :unauthorized
     end
   end
 

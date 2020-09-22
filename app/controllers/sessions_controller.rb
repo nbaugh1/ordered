@@ -13,7 +13,8 @@ class SessionsController < ApiController
 
   def logout
     reset_session
-    puts 'deleted'
+    cookies.delete :jwt
+    puts 'User logged out'
     render json: { status: 200, loggedIn: false }
   end
 end
