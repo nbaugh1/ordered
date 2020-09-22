@@ -7,7 +7,7 @@ const AuthProvider = (props) => {
 
     const [loggedIn, setLoggedIn] = useState(false)
 
-    const login = (event, email, password, history) => {
+    const login = (event, email, password) => {
         event.preventDefault()
         axios.post('/api/login', {
             user: {
@@ -22,7 +22,8 @@ const AuthProvider = (props) => {
                 setLoggedIn(response.data.loggedIn)
                 localStorage.setItem('currentUser', response.data.user)
                 localStorage.setItem('currentSession', response.data.loggedIn)
-                history.push('/profile')
+                localStorage.setItem('token', response.data.token)
+                window.location.href = '/profile'
             })
             .catch(function (error) {
                 console.log(error)
@@ -33,14 +34,17 @@ const AuthProvider = (props) => {
         setLoggedIn(false)
         localStorage.setItem('currentUser', "")
         localStorage.setItem('currentSession', false)
+        localStorage.removeItem('token')
         axios.delete('api/logout', {
             withCredentials: true
         })
+        window.location.href = '/'
     }
 
     const checkSession = () => {
         const session = localStorage.getItem("currentSession")
         setLoggedIn(session)
+        console.log('bloop')
     }
 
     return (

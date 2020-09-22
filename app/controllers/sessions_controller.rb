@@ -11,16 +11,6 @@ class SessionsController < ApiController
     end
   end
 
-  def logged_in
-    byebug
-    @current_user = User.find(session[:user_id]) if session[:user_id]
-    if @current_user
-      render json: { user: @current_user.email, loggedIn: true }
-    else
-      render json: { loggedIn: false }
-    end
-  end
-
   def logout
     reset_session
     puts 'deleted'

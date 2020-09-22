@@ -19,20 +19,33 @@ function App() {
   const [currentUser, setCurrentUser] = useState("")
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const auth = useContext(AuthContext)
+  const token = localStorage.getItem('token')
 
   const checkLoggedIn = () => {
-    console.log("Checking login status...")
-    axios.get('api/logged_in', {
-      withCredentials: true
-    })
-      .then((response) => {
-        console.log("User currently logged in")
-        setIsLoggedIn(response.data.loggedIn)
-        setCurrentUser(response.data.user)
-      })
+    if (token) {
+      console.log("Checking login status...")
+      axios.get('api/auto_login',
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        },
+        {
+          withCredentials: true
+        })
+        .then((response) => {
+          console.log("User currently logged in")
+          console.log(response.data)
+          localStorage.setItem("currentSession", response.data.loggedIn)
+          localStorage.setItem("currentUser", response.data.user)
+        })
+      setIsLoggedIn(localStorage.getItem("currentSession"))
+      auth.checkSession()
+    }
+
   }
 
-  useEffect(() => checkLoggedIn())
+  useEffect(() => checkLoggedIn(), [isLoggedIn])
 
   return isLoggedIn ?
 

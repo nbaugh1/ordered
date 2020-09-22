@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :orders
     resources :items
     resources :menus
-    get :logged_in, to: 'sessions#logged_in'
+    get :auto_login, to: 'api#auto_login'
     delete :logout, to: 'sessions#logout'
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
