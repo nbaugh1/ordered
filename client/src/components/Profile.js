@@ -2,7 +2,7 @@ import React from 'react'
 
 const Profile = () => {
 
-    const currentUser = localStorage.getItem('current_user')
+    const currentUser = localStorage.getItem('currentUser')
 
     return (
         <div>

@@ -16,7 +16,6 @@ import './App.css';
 import { AuthContext } from './contexts/AuthContext';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState("")
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const auth = useContext(AuthContext)
   const token = localStorage.getItem('token')
@@ -37,7 +36,7 @@ function App() {
           console.log("User currently logged in")
           console.log(response.data)
           localStorage.setItem("currentSession", response.data.loggedIn)
-          localStorage.setItem("currentUser", response.data.user)
+          localStorage.setItem("currentUser", response.data.email)
         })
       setIsLoggedIn(localStorage.getItem("currentSession"))
       auth.checkSession()
@@ -71,7 +70,8 @@ function App() {
           </Switch>
         </Router>
       </Layout></div>
-    : <Login />
+    :
+    <Login />
 }
 
 export default App;
